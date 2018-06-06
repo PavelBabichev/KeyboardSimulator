@@ -1,0 +1,160 @@
+﻿<Window x:Class="KeyboardSimulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="450" Width="840">
+    <StackPanel>
+        <Grid Height="60">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="29*"/>
+                <RowDefinition Height="31*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="94*"/>
+                <ColumnDefinition Width="57*"/>
+                <ColumnDefinition Width="46*"/>
+                <ColumnDefinition Width="110*"/>
+                <ColumnDefinition Width="85*"/>
+                <ColumnDefinition Width="32*"/>
+                <ColumnDefinition Width="180*"/>
+                <ColumnDefinition Width="180*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="15">Speed:</Label>
+            <TextBlock Name="txtSpeed" FontSize="15" FontWeight="Bold" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Margin="9,4,11,5" Width="26">0</TextBlock>
+            <Label FontSize="15" Grid.Column="2">chars/min</Label>
+            <Label FontSize="15" Grid.Column="3">Fails:</Label>
+            <TextBlock Name="txtFails" FontSize="15" FontWeight="Bold" Grid.Column="4" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="20" Margin="6,4,9,5" Width="26">0</TextBlock>
+            <Label FontSize="15" Grid.Column="6">Difficulty:</Label>
+            <TextBlock Name="txtSlider" FontSize="15" FontWeight="Bold" Grid.Column="7" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="26">5</TextBlock>
+            <Slider Name="slider" Grid.Column="8" Margin="3" Minimum="5" Maximum="20" ValueChanged="slider_ValueChanged"></Slider>
+            <CheckBox Grid.Column="9" Height="20" FontSize="15" Margin="3">Case Sensitive</CheckBox>
+            <Button Name="btnStart" Grid.Column="8" Grid.Row="2" FontSize="15" Margin="3" Click="Button_Click_Start">Start</Button>
+            <Button Name="btnStop" Grid.Column="9" Grid.Row="2" FontSize="15" Margin="3" IsEnabled="False" Click="Button_Click_Stop">Stop</Button>
+        </Grid>
+        <TextBox Name="txtRead" FontSize="15" Height="60" IsReadOnly="True" Background="#FFD7E9F9" TextWrapping="Wrap"></TextBox>
+        <TextBox Name="txtWrite" FontSize="15" Height="60" IsReadOnly="True" Background="#FFD7E9F9" TextWrapping="Wrap"></TextBox>
+        <Canvas Name="buttonsArea" Height="280">
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="5" Width="50" Background="#FFFD8FA8">`</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="60" Width="50" Background="#FFFD8FA8">1</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="115" Width="50" Background="#FFFD8FA8">2</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="170" Width="50" Background="#FFFDE98D">3</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="225" Width="50" Background="#FF87FB97">4</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="280" Width="50" Background="#FF87D6FB">5</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="335" Width="50" Background="#FF87D6FB">6</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="390" Width="50" Background="#FFF77DF7">7</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="445" Width="50" Background="#FFF77DF7">8</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="500" Width="50" Background="#FFFD8FA8">9</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="555" Width="50" Background="#FFFDE98D">0</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="610" Width="50" Background="#FF87FB97">-</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="665" Width="50" Background="#FF87FB97">=</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="720" Width="100" Background="LightGray">Bakcspace</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="5" Width="50" Background="#FFFD8FA8" Visibility="Hidden">~</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="60" Width="50" Background="#FFFD8FA8" Visibility="Hidden">!</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="115" Width="50" Background="#FFFD8FA8" Visibility="Hidden">@</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="170" Width="50" Background="#FFFDE98D" Visibility="Hidden">#</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="225" Width="50" Background="#FF87FB97" Visibility="Hidden">$</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="280" Width="50" Background="#FF87D6FB" Visibility="Hidden">%</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="335" Width="50" Background="#FF87D6FB" Visibility="Hidden">^</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="390" Width="50" Background="#FFF77DF7" Visibility="Hidden">&amp;</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="445" Width="50" Background="#FFF77DF7" Visibility="Hidden">*</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="500" Width="50" Background="#FFFD8FA8" Visibility="Hidden">(</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="555" Width="50" Background="#FFFDE98D" Visibility="Hidden">)</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="610" Width="50" Background="#FF87FB97" Visibility="Hidden">_</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="665" Width="50" Background="#FF87FB97" Visibility="Hidden">+</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="5" Canvas.Left="720" Width="100" Background="LightGray" Visibility="Hidden">Bakcspace</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="5" Width="75" Background="LightGray">Tab</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="85" Width="50" Background="#FFFD8FA8">q</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="140" Width="50" Background="#FFFDE98D">w</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="195" Width="50" Background="#FF87FB97">e</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="250" Width="50" Background="#FF87D6FB">r</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="305" Width="50" Background="#FF87D6FB">t</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="360" Width="50" Background="#FFF77DF7">y</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="415" Width="50" Background="#FFF77DF7">u</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="470" Width="50" Background="#FFFD8FA8">i</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="525" Width="50" Background="#FFFDE98D">o</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="580" Width="50" Background="#FF87FB97">p</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="635" Width="50" Background="#FF87FB97">[</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="690" Width="50" Background="#FF87FB97">]</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="745" Width="75" Background="#FF87FB97">\</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="5" Width="75" Background="LightGray" Visibility="Hidden">Tab</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="85" Width="50" Background="#FFFD8FA8" Visibility="Hidden">Q</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="140" Width="50" Background="#FFFDE98D" Visibility="Hidden">W</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="195" Width="50" Background="#FF87FB97" Visibility="Hidden">E</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="250" Width="50" Background="#FF87D6FB" Visibility="Hidden">R</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="305" Width="50" Background="#FF87D6FB" Visibility="Hidden">T</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="360" Width="50" Background="#FFF77DF7" Visibility="Hidden">Y</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="415" Width="50" Background="#FFF77DF7" Visibility="Hidden">U</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="470" Width="50" Background="#FFFD8FA8" Visibility="Hidden">I</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="525" Width="50" Background="#FFFDE98D" Visibility="Hidden">O</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="580" Width="50" Background="#FF87FB97" Visibility="Hidden">P</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="635" Width="50" Background="#FF87FB97" Visibility="Hidden">{</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="690" Width="50" Background="#FF87FB97" Visibility="Hidden">}</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="50" Canvas.Left="745" Width="75" Background="#FF87FB97" Visibility="Hidden">|</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="5" Width="100" Background="LightGray">Caps Lock</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="110" Width="50" Background="#FFFD8FA8">a</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="165" Width="50" Background="#FFFDE98D">s</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="220" Width="50" Background="#FF87FB97">d</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="275" Width="50" Background="#FF87D6FB">f</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="335" Width="50" Background="#FF87D6FB">g</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="390" Width="50" Background="#FFF77DF7">h</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="445" Width="50" Background="#FFF77DF7">j</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="500" Width="50" Background="#FFFD8FA8">k</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="555" Width="50" Background="#FFFDE98D">l</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="610" Width="50" Background="#FF87FB97">;</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="665" Width="50" Background="#FF87FB97">'</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Right="5" Width="100" Background="LightGray">Enter</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="5" Width="100" Background="LightGray" Visibility="Hidden">Caps Lock</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="110" Width="50" Background="#FFFD8FA8" Visibility="Hidden">A</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="165" Width="50" Background="#FFFDE98D" Visibility="Hidden">S</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="220" Width="50" Background="#FF87FB97" Visibility="Hidden">D</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="275" Width="50" Background="#FF87D6FB" Visibility="Hidden">F</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="335" Width="50" Background="#FF87D6FB" Visibility="Hidden">G</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="390" Width="50" Background="#FFF77DF7" Visibility="Hidden">H</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="445" Width="50" Background="#FFF77DF7" Visibility="Hidden">J</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="500" Width="50" Background="#FFFD8FA8" Visibility="Hidden">K</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="555" Width="50" Background="#FFFDE98D" Visibility="Hidden">L</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="610" Width="50" Background="#FF87FB97" Visibility="Hidden">:</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Left="665" Width="50" Background="#FF87FB97" Visibility="Hidden">"</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="95" Canvas.Right="5" Width="100" Background="LightGray" Visibility="Hidden">Enter</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="5" Width="125" Background="LightGray">Shift</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="135" Width="50" Background="#FFFD8FA8">z</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="190" Width="50" Background="#FFFDE98D">x</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="245" Width="50" Background="#FF87FB97">c</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="300" Width="50" Background="#FF87D6FB">v</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="355" Width="50" Background="#FF87D6FB">b</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="410" Width="50" Background="#FFF77DF7">n</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="465" Width="50" Background="#FFF77DF7">m</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="520" Width="50" Background="#FFFD8FA8">,</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="575" Width="50" Background="#FFFDE98D">.</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="630" Width="50" Background="#FF87FB97">/</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Right="5" Width="135" Background="LightGray">Shift</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="5" Width="125" Background="LightGray" Visibility="Hidden">Shift</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="135" Width="50" Background="#FFFD8FA8" Visibility="Hidden">Z</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="190" Width="50" Background="#FFFDE98D" Visibility="Hidden">X</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="245" Width="50" Background="#FF87FB97" Visibility="Hidden">C</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="300" Width="50" Background="#FF87D6FB" Visibility="Hidden">V</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="355" Width="50" Background="#FF87D6FB" Visibility="Hidden">B</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="410" Width="50" Background="#FFF77DF7" Visibility="Hidden">N</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="465" Width="50" Background="#FFF77DF7" Visibility="Hidden">M</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="520" Width="50" Background="#FFFD8FA8" Visibility="Hidden">&lt;</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="575" Width="50" Background="#FFFDE98D" Visibility="Hidden">&gt;</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Left="630" Width="50" Background="#FF87FB97" Visibility="Hidden">?</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="140" Canvas.Right="5" Width="135" Background="LightGray" Visibility="Hidden">Shift</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="5" Width="75" Background="LightGray">Ctrl</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="85" Width="75" Background="LightGray">Win</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="165" Width="75" Background="LightGray">Alt</Button>
+            <Button Name="btnSpace" Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="245" Width="335" Background="#FFDCC24F">Space</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="585" Width="75" Background="LightGray">Alt</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="665" Width="75" Background="LightGray">Win</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Right="5" Width="75" Background="LightGray">Ctrl</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="5" Width="75" Background="LightGray" Visibility="Hidden">Ctrl</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="85" Width="75" Background="LightGray" Visibility="Hidden">Win</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="165" Width="75" Background="LightGray" Visibility="Hidden">Alt</Button>
+            <Button Name="btnSpace1" Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="245" Width="335" Background="#FFDCC24F" Visibility="Hidden">Space</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="585" Width="75" Background="LightGray" Visibility="Hidden">Alt</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Left="665" Width="75" Background="LightGray" Visibility="Hidden">Win</Button>
+            <Button Template="{StaticResource btTemplate}" Canvas.Top="185" Canvas.Right="5" Width="75" Background="LightGray" Visibility="Hidden">Ctrl</Button>
+        </Canvas>
+    </StackPanel>
+</Window>
